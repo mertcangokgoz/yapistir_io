@@ -1,0 +1,22 @@
+{% if form.errors %}
+    <div class="container">
+        <div class="columns is-fullwidth">
+            <div class="column">
+                <div class="notification is-danger">
+                    <button class="delete"></button>
+                    {% for field in form %}
+                        {% if field.errors %}
+                            {% for error in field.errors %}
+                                <a href="#id_{{ field.name }}"
+                                   class="error">{{ field.name }} {{ error|escape }}</a>
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if form.non_field_errors %}
+                        {{ form.non_field_errors }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

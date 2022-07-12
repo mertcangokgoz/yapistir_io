@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %} yapistir.io/{{ object.slug }} ({{ object.lexer }}) {% endblock title %}
+
+{% block content %}
+    {% include "include/__detail_func.html" %}
+    <div class="control">
+        {% if object.lexer == '_text' %}
+            {% include 'include/code.html' %}
+        {% elif object.lexer == '_markdown' %}
+            <div class="snippet-text box">
+                <article class="content">{{ object.highlighted|safe }}</article>
+            </div>
+        {% elif object.lexer == '_rst' %}
+            <div class="snippet-text box">
+                <article class="content">
+                    <div>{{ object.highlighted|safe }}</div>
+                </article>
+            </div>
+        {% elif object.lexer == '_code' %}
+            <div id="code_frame2">
+                <div id="code_frame">
+                    <div id="code_buttons">
+                <span class="go_right">
+                    {% if object.lexer == '_text' %} Plain Text {% elif object.lexer == '_code' %} Plain
+                        Code{% else %} {{ object.lexer|capfirst }} {% endif %}
+                </span>
+                        {{ object.size|filesizeformat }}
+                    </div>
+                    <label for="codemirror-textarea"></label><textarea id="codemirror-textarea">{{ object.content }}</textarea>
+                </div>
+            </div>
+        {% else %}
+            {% include 'include/code.html' %}
+        {% endif %}
+    </div>
+{% endblock content %}
+
+{% block js_code %}
+
+    <script type="text/javascript">
+    var editor;
+    $(function () {
+        editor = CodeMirror.fromTextArea(document.getElementById("codemirror-textarea"), {
+            readOnly: true,
+            lineNumbers: true,
+            matchBrackets: true,
+            lineWrapping: true,
+            indentUnit: 4,
+        });
+    });
+    </script>
+{% endblock js_code %}

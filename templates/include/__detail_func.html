@@ -1,0 +1,33 @@
+<nav class="level">
+    <div class="level-left">
+        <div class="level-item">
+            <span class="tooltip" data-tooltip="Eklenme tarihi"> <i
+                    class="mdi mdi-timer-plus"></i> <b>{{ object.publish|date:"j F Y, H:i" }}</b> </span>
+        </div>
+        <div class="level-item">
+            {% if object.expire_type == 2 %}
+                <span class="tooltip" data-tooltip="sonra silinecek"> <i
+                        class="mdi mdi-clipboard-text-clock"></i> <b>Asla</b> </span>
+            {% elif object.expire_type == 3 %}
+                <span class="tooltip" data-tooltip="sonra silinecek"> <i
+                        class="mdi mdi-clipboard-text-clock"></i> <b> {{ object.expire|timeuntil }}</b> </span>
+            {% endif %}
+        </div>
+        <div class="level-item">
+            <span class="tooltip" data-tooltip="Gösterim"> <i
+                    class="mdi mdi-eye-plus"></i> <b>{{ object.view_count }}</b> </span>
+        </div>
+    </div>
+    <div class="level-right">
+        <div class="level-item">
+            <p class="level-item"><a class="button is-link tooltip" data-tooltip="Txt olarak göster"
+                                     href="{% url 'paste_details_raw' paste_id=object.slug %}"><span
+                    class="mdi mdi-book-multiple"></span></a></p>
+        </div>
+        <div class="level-item">
+            <p class="level-item"><a class="button is-success tooltip" data-tooltip="İndir"
+                                     href="{% url 'paste_download' paste_id=object.slug %}"><span
+                    class="mdi mdi-download"></span></a></p>
+        </div>
+    </div>
+</nav>

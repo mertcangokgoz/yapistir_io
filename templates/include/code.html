@@ -1,0 +1,11 @@
+<div id="code_frame2">
+    <div id="code_frame">
+        <div id="code_buttons">
+            <span class="go_right">
+                {% if object.lexer == '_text' %} Plain Text {% elif object.lexer == '_code' %} Plain Code{% else %}{{ object.lexer|capfirst }} {% endif %}
+            </span>
+            {{ object.size|filesizeformat }}
+        </div>
+        <div class="snippet-code">{{ object.highlighted|safe }}</div>
+    </div>
+</div>

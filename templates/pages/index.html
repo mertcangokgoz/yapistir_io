@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="columns">
+        <div class="column">
+            {% include "include/__errors.html" %}
+            <form method="POST" name="pasteform" id="form" onsubmit="return checkForm(this);">
+                {% csrf_token %}
+
+                <div class="columns">
+                    <div class="column">
+                        <label class="label">Başlık:</label>
+                        {{ form.title }}
+                    </div>
+                    <div class="column">
+                        <label class="label">Programlama Dili:</label>
+                        <div class="control has-icons-left">
+                            <div class="select">
+                                {{ form.lexer }}
+                            </div>
+                            <span class="icon is-small is-left">
+                            <i class="mdi mdi-code-braces-box"></i>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        {{ form.content }}
+                    </div>
+                </div>
+
+                <div class="columns">
+                    <div class="column is-2">
+                        <label for="id_expire" class="label">Geçerlilik:</label>
+                        <div class="control">
+                            <div class="select">
+                                {{ form.expire }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="control">
+                            <button class="button is-block is-info is-pulled-right" type="submit" name="protectsubmit">
+                                <i class="mdi mdi-content-save-plus"></i> Kaydet
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js_code %}
+    <script>
+         $('.select2').select2({
+             closeOnSelect: true,
+             selectOnClose: true,
+             multiple: false,
+             placeholder: 'Lütfen bir seçim yapınız',
+         });
+        function checkForm(form) {
+            form.protectsubmit.disabled = true;
+            form.protectsubmit.innerHTML = "Lütfen Bekleyin...";
+            return true;
+        }
+    </script>
+{% endblock js_code %}

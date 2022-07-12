@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top" lang="tr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.70, maximum-scale=1.0, user-scalable=yes">
+    <meta name="theme-color" content="#FEDC60"/>
+    <meta name="msapplication-navbutton-color" content="#FEDC60"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="#FEDC60"/>
+
+    <title>{% block title %}Yapıştırma Servisi - Yapıştır.io!{% endblock title %}</title>
+    <link rel="shortcut icon" type="image/png" href="{% static "images/favicon.png" %}"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.materialdesignicons.com/6.9.96/css/materialdesignicons.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static "assets/css/custom.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "assets/css/bulma-tooltip.min.css" %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.6/codemirror.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.6/codemirror.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js?render=6LdsI-IgAAAAAGlcfayEBpls7LAVdn0FWYb34XIL'></script>
+    {% block js_header %} {% endblock js_header %}
+</head>
+
+<body>
+<section class="section">
+    <div class="container is-widescreen">
+        <div class="page">
+            <div class="wrapper">
+                <div class="header">
+                    <nav class="navbar is-fixed-top header">
+                        <div class="container">
+                            <div class="navbar-brand">
+                                <a class="navbar-item logo" href="{% url 'paste_new' %}">
+                                    <h1 class="title">yapistir.io</h1>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            {% block content %} {% endblock content %}
+
+            <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a
+                    href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
+        </div>
+    </div>
+</section>
+<script src="{% static "assets/js/bulma.js" %}"></script>
+<script>
+    grecaptcha.ready(function () {
+        grecaptcha.execute('6LdsI-IgAAAAAGlcfayEBpls7LAVdn0FWYb34XIL', {action: 'YP_ReCaptcha'})
+            .then(function (token) {
+                var input = document.createElement("input");
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', 'g_recaptcha_response');
+                input.setAttribute('value', token);
+                document.getElementById("form").appendChild(input);
+            });
+    });
+
+</script>
+
+{% block js_code %} {% endblock js_code %}
+</body>
+</html>
