@@ -30,7 +30,7 @@ unicode_backport = ["unicodedata2"]
 
 [[package]]
 name = "django"
-version = "3.2.14"
+version = "3.2.15"
 description = "A high-level Python Web framework that encourages rapid development and clean, pragmatic design."
 category = "main"
 optional = false
@@ -42,8 +42,8 @@ pytz = "*"
 sqlparse = ">=0.2.2"
 
 [package.extras]
-argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
+argon2 = ["argon2-cffi (>=19.1.0)"]
 
 [[package]]
 name = "django-debug-toolbar"
@@ -66,9 +66,9 @@ optional = false
 python-versions = ">=3.4,<4"
 
 [package.extras]
-develop = ["coverage[toml] (>=5.0a4)", "pytest (>=4.6.11)", "furo (>=2021.8.17b43,<2021.9.0)", "sphinx (>=3.5.0)", "sphinx-notfound-page"]
-docs = ["furo (>=2021.8.17b43,<2021.9.0)", "sphinx (>=3.5.0)", "sphinx-notfound-page"]
-testing = ["coverage[toml] (>=5.0a4)", "pytest (>=4.6.11)"]
+testing = ["pytest (>=4.6.11)", "coverage[toml] (>=5.0a4)"]
+docs = ["sphinx-notfound-page", "sphinx (>=3.5.0)", "furo (>=2021.8.17b43,<2021.9.0)"]
+develop = ["sphinx-notfound-page", "sphinx (>=3.5.0)", "furo (>=2021.8.17b43,<2021.9.0)", "pytest (>=4.6.11)", "coverage[toml] (>=5.0a4)"]
 
 [[package]]
 name = "django-safedelete"
@@ -181,8 +181,8 @@ idna = ">=2.5,<4"
 urllib3 = ">=1.21.1,<1.27"
 
 [package.extras]
-socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use_chardet_on_py3 = ["chardet (>=3.0.2,<6)"]
+socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 
 [[package]]
 name = "sqlparse"
@@ -208,7 +208,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10.5"
-content-hash = "411518bddf4032396a902b2fc48fef1a42cf2ca4ede29df29f2699e00ae4a922"
+content-hash = "49db933f9d981e2ab9ce4502791074aba552e205f74e8f2609c8acd81ce456a7"
 
 [metadata.files]
 asgiref = [
@@ -223,19 +223,34 @@ charset-normalizer = [
     {file = "charset-normalizer-2.1.0.tar.gz", hash = "sha256:575e708016ff3a5e3681541cb9d79312c416835686d054a23accb873b254f413"},
     {file = "charset_normalizer-2.1.0-py3-none-any.whl", hash = "sha256:5189b6f22b01957427f35b6a08d9a0bc45b46d3788ef5a92e978433c7a35f8a5"},
 ]
-django = []
-django-debug-toolbar = []
+django = [
+    {file = "Django-3.2.15-py3-none-any.whl", hash = "sha256:115baf5049d5cf4163e43492cdc7139c306ed6d451e7d3571fe9612903903713"},
+    {file = "Django-3.2.15.tar.gz", hash = "sha256:f71934b1a822f14a86c9ac9634053689279cd04ae69cb6ade4a59471b886582b"},
+]
+django-debug-toolbar = [
+    {file = "django-debug-toolbar-3.5.0.tar.gz", hash = "sha256:97965f2630692de316ea0c1ca5bfa81660d7ba13146dbc6be2059cf55b35d0e5"},
+    {file = "django_debug_toolbar-3.5.0-py3-none-any.whl", hash = "sha256:89a52128309eb4da12738801ff0c202d2ff8730d1c3225fac6acf630c303e661"},
+]
 django-environ = [
     {file = "django-environ-0.9.0.tar.gz", hash = "sha256:bff5381533056328c9ac02f71790bd5bf1cea81b1beeb648f28b81c9e83e0a21"},
     {file = "django_environ-0.9.0-py2.py3-none-any.whl", hash = "sha256:f21a5ef8cc603da1870bbf9a09b7e5577ab5f6da451b843dbcc721a7bca6b3d9"},
 ]
-django-safedelete = []
-docutils = []
+django-safedelete = [
+    {file = "django-safedelete-1.2.2.tar.gz", hash = "sha256:8faab05e3126a27c901638dcb2f6f769cf46bb1b33052714659eb93efe81ffce"},
+    {file = "django_safedelete-1.2.2-py3-none-any.whl", hash = "sha256:2f535b6d72f4517083f6902cd2140c727a9d8d9f9b0feda171318421bbf31704"},
+]
+docutils = [
+    {file = "docutils-0.19-py3-none-any.whl", hash = "sha256:5e1de4d849fee02c63b040a4a3fd567f4ab104defd8a5511fbbc24a8a017efbc"},
+    {file = "docutils-0.19.tar.gz", hash = "sha256:33995a6753c30b7f577febfc2c50411fec6aac7f7ffeb7c4cfe5991072dcf9e6"},
+]
 idna = [
     {file = "idna-3.3-py3-none-any.whl", hash = "sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff"},
     {file = "idna-3.3.tar.gz", hash = "sha256:9d643ff0a55b762d5cdb124b8eaa99c66322e2157b69160bc32796e824360e6d"},
 ]
-markdown = []
+markdown = [
+    {file = "Markdown-3.3.7-py3-none-any.whl", hash = "sha256:f5da449a6e1c989a4cea2631aa8ee67caa5a2ef855d551c88f9e309f4634c621"},
+    {file = "Markdown-3.3.7.tar.gz", hash = "sha256:cbb516f16218e643d8e0a95b309f77eb118cb138d39a4f27851e6a63581db874"},
+]
 pillow = [
     {file = "Pillow-9.2.0-cp310-cp310-macosx_10_10_x86_64.whl", hash = "sha256:a9c9bc489f8ab30906d7a85afac4b4944a572a7432e00698a7239f44a44e6efb"},
     {file = "Pillow-9.2.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:510cef4a3f401c246cfd8227b300828715dd055463cdca6176c2e4036df8bd4f"},
@@ -358,8 +373,13 @@ pygments = [
     {file = "Pygments-2.12.0-py3-none-any.whl", hash = "sha256:dc9c10fb40944260f6ed4c688ece0cd2048414940f1cea51b8b226318411c519"},
     {file = "Pygments-2.12.0.tar.gz", hash = "sha256:5eb116118f9612ff1ee89ac96437bb6b49e8f04d8a13b514ba26f620208e26eb"},
 ]
-pygments-lexer-solidity = []
-pymdown-extensions = []
+pygments-lexer-solidity = [
+    {file = "pygments-lexer-solidity-0.7.0.tar.gz", hash = "sha256:a347fd96981838331b6d98b0f891776908a49406d343ff2a40a6a1c8475a9350"},
+]
+pymdown-extensions = [
+    {file = "pymdown_extensions-9.5-py3-none-any.whl", hash = "sha256:ec141c0f4983755349f0c8710416348d1a13753976c028186ed14f190c8061c4"},
+    {file = "pymdown_extensions-9.5.tar.gz", hash = "sha256:3ef2d998c0d5fa7eb09291926d90d69391283561cf6306f85cd588a5eb5befa0"},
+]
 pytz = [
     {file = "pytz-2022.1-py2.py3-none-any.whl", hash = "sha256:e68985985296d9a66a881eb3193b0906246245294a881e7c8afe623866ac6a5c"},
     {file = "pytz-2022.1.tar.gz", hash = "sha256:1e760e2fe6a8163bc0b3d9a19c4f84342afa0a2affebfaa84b01b978a02ecaa7"},
@@ -372,4 +392,7 @@ sqlparse = [
     {file = "sqlparse-0.4.2-py3-none-any.whl", hash = "sha256:48719e356bb8b42991bdbb1e8b83223757b93789c00910a616a071910ca4a64d"},
     {file = "sqlparse-0.4.2.tar.gz", hash = "sha256:0c00730c74263a94e5a9919ade150dfc3b19c574389985446148402998287dae"},
 ]
-urllib3 = []
+urllib3 = [
+    {file = "urllib3-1.26.10-py2.py3-none-any.whl", hash = "sha256:8298d6d56d39be0e3bc13c1c97d133f9b45d797169a0e11cdd0e0489d786f7ec"},
+    {file = "urllib3-1.26.10.tar.gz", hash = "sha256:879ba4d1e89654d9769ce13121e0f94310ea32e8d2f8cf587b77c08bbcdb30d6"},
+]
