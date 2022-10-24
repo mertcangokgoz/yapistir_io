@@ -20,18 +20,18 @@ class NakedHtmlFormatter(HtmlFormatter):
         return self._wrap_code(source)
 
     def _wrap_code(self, source):  # noqa
-        for i, t in source:
-            yield i, t
+        yield from source
 
 
 def pygmentize(code_string: str, lexer_name: str = "_code") -> object:
     if lexer_name == "_code":
         return "\n".join(
             [
-                '<span class="plain">{}</span>'.format(escape(l) or "&#8203;")
+                f'<span class="plain">{escape(l) or "&#8203;"}</span>'
                 for l in code_string.splitlines()
             ]
         )
+
     if lexer_name == "_text":
         return code_string
     if lexer_name == "_markdown":
@@ -86,8 +86,6 @@ def pygmentize(code_string: str, lexer_name: str = "_code") -> object:
         lexer = get_lexer_by_name(lexer_name, stripall=True)
     except ClassNotFound:
         logger.exception("Could not find lexer for %s", lexer_name)
-        pass
-
     if not lexer:
         lexer = "text"
 
