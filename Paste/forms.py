@@ -72,7 +72,7 @@ class PasteForm(forms.Form):
         return data
 
     def clean_content(self):
-        data = self.cleaned_data.get("content")
-        if not data:
+        if data := self.cleaned_data.get("content"):
+            return data
+        else:
             raise ValidationError("İçerik girişi yapmalısınız.")
-        return data

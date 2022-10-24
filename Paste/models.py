@@ -75,9 +75,7 @@ class Paste(SafeDeleteModel):
         return len(content.splitlines())
 
     def save(self, *args, **kwargs):
-        if self.view_count:
-            pass
-        else:
+        if not self.view_count:
             self.expire = self.expire
             self.title = self.title
             self.expire = self.get_expire(self.expire)
